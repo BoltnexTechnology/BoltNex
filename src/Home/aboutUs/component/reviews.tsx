@@ -118,7 +118,7 @@ const Testimony: React.FC = () => {
                 duration: 0.6,
                 ease: "easeInOut",
               }}
-              className="absolute h-[400px] max-sm:h-[350px] w-[364px] max-md:w-[320px] max-sm:w-[280px] max-sm:p-4 px-8 py-7 rounded-xl shadow-black/30 bg-white shadow-sm"
+              className="absolute h-[400px] max-sm:h-[350px] w-[364px] max-md:w-[320px] max-sm:w-[270px] max-sm:p-4 px-8 py-7 rounded-xl shadow-black/30 bg-white shadow-sm"
               style={{
                 cursor: isActive ? "default" : "pointer",
               }}
