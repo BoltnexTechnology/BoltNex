@@ -1,82 +1,71 @@
 import { motion } from "framer-motion";
+import { Target, Compass, Lightbulb } from "lucide-react";
+
+const pillars = [
+  {
+    icon: Target,
+    title: "Mission",
+    desc: "To eliminate operational friction by building intelligent software that simplifies how service businesses operate and how customers access those services.",
+  },
+  {
+    icon: Compass,
+    title: "Vision",
+    desc: "To become the technology company behind the everyday operations of millions of service businesses worldwide.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Philosophy",
+    desc: "Technology should not create more work. It should remove it. If a feature doesn't save time, reduce complexity or improve customer experience, it doesn't belong in our products.",
+  },
+];
 
 const FirstPart = () => {
   return (
-    <div className="h-screen max-sm:h-full flex flex-col justify-center px-12 max-lg:px-8 max-md:px-6 py-10 max-sm:pt-10">
-      <section className="flex flex-row-reverse items-start justify-between gap-x-14 max-xl:flex-col max-xl:gap-10">
-        {/* IMAGE SECTION */}
-        <motion.article
-          className="basis-[45%] max-xl:basis-full max-xl:hidden"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <motion.img
-            src="/about.jpg"
-            alt="about"
-            className="w-full rounded-4xl object-cover object-top shadow shadow-black/30 h-110 cursor-pointer max-md:h-80"
-            whileHover={{
-              scale: 1.05,
-              rotate: 1.5,
-              transition: { duration: 0.4, ease: "easeOut" },
-            }}
-            whileTap={{ scale: 0.98 }}
-          />
-        </motion.article>
+    <div className="px-12 max-lg:px-8 max-md:px-6 py-16 max-md:py-10">
+      <motion.div
+        className="max-w-3xl mx-auto text-center"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <p className="text-sm font-semibold text-bolts-blue uppercase tracking-wide mb-3">
+          About Boltnex Technology
+        </p>
+        <h1 className="text-4xl max-md:text-3xl font-semibold text-black leading-tight">
+          Building the operational layer for service businesses.
+        </h1>
+        <p className="mt-6 text-lg max-md:text-base text-black/60 leading-relaxed">
+          Boltnex Technology is a UK technology company building software
+          that removes operational friction from service businesses. We're
+          not an IT consultancy and we're not a software agency. We build
+          scalable software products, starting with BQueue.
+        </p>
+      </motion.div>
 
-        {/* TEXT SECTION */}
-        <motion.article
-          className="basis-[45%] max-xl:basis-full"
-          initial={{ opacity: 0, x: -100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        >
-          <motion.p
-            className="font-bold text-4xl w-9/12 text-black max-xl:w-full max-md:text-2xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Engineering the Future of Global Digitalization.
-          </motion.p>
-
+      <motion.div
+        className="grid grid-cols-3 max-md:grid-cols-1 gap-5 mt-14 max-w-4xl mx-auto w-full"
+        initial="hidden"
+        animate="visible"
+        variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } } }}
+      >
+        {pillars.map(({ icon: Icon, title, desc }) => (
           <motion.div
-            className="flex-col flex gap-y-3 my-6 text-base max-md:text-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            key={title}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="rounded-2xl bg-white border border-black/5 shadow-sm p-7 text-left"
           >
-            <p>
-              BoltNex Technology is a UK-registered, full-service technology and
-              innovation firm dedicated to building the next generation of
-              highly scalable, localized, and AI-driven software platforms.
-            </p>
-            <p>
-              From our strategic base in the United Kingdom, we leverage
-              world-class engineering standards to tackle the most complex
-              digital challenges in high-growth markets worldwide.
-            </p>
-            <p>
-              Our mission is clear: To empower global businesses and drive
-              economic inclusion in emerging markets by delivering innovative,
-              localized, and highly scalable technology solutions.
-            </p>
-            <div>
-              <p className="font-medium text-3xl w-9/12 mb-3 text-black max-xl:w-full max-md:text-xl">
-                Our Core Philosophy: Localization Meets World-Class Engineering
-              </p>
-              <p>
-                We believe true digital transformation requires solutions that
-                are not only robust and scalable but also intimately tailored to
-                the logistical, cultural, and market-specific realities of local
-                environments. We combine the technical excellence and legal
-                stability of a UK-based firm with a deep, on-the-ground
-                understanding of international markets.
-              </p>
+            <div className="w-11 h-11 rounded-xl bg-bolts-blue/10 flex items-center justify-center mb-5">
+              <Icon className="w-5 h-5 text-bolts-blue" />
             </div>
+            <p className="text-black font-semibold text-lg">{title}</p>
+            <p className="mt-2 text-black/60 text-sm leading-relaxed">{desc}</p>
           </motion.div>
-        </motion.article>
-      </section>
+        ))}
+      </motion.div>
     </div>
   );
 };

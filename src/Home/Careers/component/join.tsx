@@ -1,106 +1,41 @@
+import { motion } from "framer-motion";
+import { Mail } from "lucide-react";
+import { Button } from "../../../components/ui/button";
 
 const Join = () => {
-  const JoingArray = [
-    {
-      title: "Software Engineer",
-      Experience: "2+ years",
-      Deadline: "30th June 2025",
-    },
-    {
-      title: "Product Manager",
-      Experience: "3+ years",
-      Deadline: "15th July 2025",
-    },
-    {
-      title: "UX/UI Designer",
-      Experience: "2+ years",
-      Deadline: "1st August 2025",
-    },
-    {
-      title: "WordPress Developer",
-      Experience: "4+ years",
-      Deadline: "20th August 2025",
-    },
-    {
-      title: "iOS Developer",
-      Experience: "3+ years",
-      Deadline: "5th September 2025",
-    },
-  ];
-
-  const handleApply = (role: string, experience: string) => {
-    const subject = encodeURIComponent(`Application for ${role}`);
+  const handleSpeculativeApply = () => {
+    const subject = encodeURIComponent("Speculative application: Boltnex Technology");
     const body = encodeURIComponent(
-      `Hello Boltnex Team,\n\nI am [Your Name], and I am applying for the ${role} position.\n\nMy experience: ${experience}\n\n[You can add more details here before sending.]\n\nThank you,\n[Your Name]`
+      `Hello Boltnex Team,\n\nI'd like to introduce myself even though I don't see an open role that matches right now.\n\nA bit about me:\n[Your background]\n\nWhat I'd be interested in working on:\n[Your interest]\n\nThank you,\n[Your Name]`
     );
-    window.location.href = `mailto:info@boltnex.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:support@boltnex.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section className=" px-24 max-xl:px-10 max-md:px-5 ">
-      {/* HEADER */}
-      <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-4xl max-md:text-3xl font-semibold">
-          Want to join team Boltnex?
-        </h1>
-        <p className="text-[#00000099] text-lg max-md:text-base mt-5 leading-relaxed">
-          We’re always looking for creative, talented self-starters to join the
-          Boltnex team. Check out our open roles below and fill out an
-          application.
+    <section className="px-24 max-xl:px-10 max-md:px-5 py-20 max-md:py-14">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.4 }}
+        className="max-w-xl mx-auto text-center rounded-3xl bg-white border border-black/5 shadow-sm p-12 max-md:p-8"
+      >
+        <div className="w-12 h-12 rounded-full bg-bolts-blue/10 flex items-center justify-center mx-auto mb-6">
+          <Mail className="w-5 h-5 text-bolts-blue" />
+        </div>
+        <h2 className="text-2xl max-md:text-xl font-semibold text-black">
+          No open roles right now
+        </h2>
+        <p className="mt-4 text-black/60 leading-relaxed">
+          We're a small, early-stage team, so we're not actively hiring at
+          the moment. When we open a role, it'll be listed here. If you think
+          you'd be a great fit for what we're building, we'd still love to
+          hear from you.
         </p>
-      </div>
-
-      {/* JOB LIST */}
-      <div className="w-10/12 max-xl:w-11/12 max-sm:w-full mx-auto mt-12">
-        {JoingArray.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleApply(item.title, item.Experience)}
-            className="
-              group 
-              grid 
-              grid-cols-4 
-              max-md:grid-cols-2 
-              max-sm:grid-cols-1 
-              gap-4 
-              items-center 
-              text-[#001833] 
-              cursor-pointer 
-              p-5 
-              my-6 
-              bg-white 
-              shadow-sm 
-              shadow-black/10 
-              rounded-xl 
-              transition-all 
-              duration-300 
-              hover:shadow-md 
-            "
-          >
-            <p className="text-lg max-sm:text-base font-semibold">
-              {item.title}
-            </p>
-
-            <div>
-              <p className="text-[#D4D4D4] text-sm font-semibold">Experience</p>
-              <p className="font-medium">{item.Experience}</p>
-            </div>
-
-            <div>
-              <p className="text-[#D4D4D4] text-sm font-semibold">Deadline</p>
-              <p className="font-medium">{item.Deadline}</p>
-            </div>
-
-            <div className="flex justify-end max-sm:justify-start">
-              <img
-                src="/arrowLeft.svg"
-                alt="arrowLeft"
-                className="transition-all duration-300 ease-in-out group-hover:rotate-[-30deg] group-hover:filter group-hover:brightness-0 group-hover:invert-35 group-hover:sepia-100 group-hover:saturate-600 group-hover:hue-rotate-200 group-hover:contrast-105"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+        <Button onClick={handleSpeculativeApply} className="mt-8">
+          Send a Speculative Application
+        </Button>
+      </motion.div>
     </section>
   );
 };

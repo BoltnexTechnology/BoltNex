@@ -2,7 +2,7 @@ import Testimony from './reviews'
 
 const Services = () => {
   return (
-    <div className="relative h-screen max-sm:h-full px-24 max-xl:px-10 max-md:px-5  flex flex-col justify-center bg-gray-500 overflow-hidden">
+    <div className="relative px-24 max-xl:px-10 max-md:px-5 py-20 max-md:py-14 flex flex-col justify-center overflow-hidden">
       {/* Background image */}
       <img 
         src="/servicePage.jpg" 
@@ -14,11 +14,11 @@ const Services = () => {
       <div className="relative z-10 text-white flex flex-col justify-center">
         <div className="my-8 ">
           <h1 className="text-4xl font-semibold max-xl:text-3xl max-md:text-2xl">
-            Our Services: Building Your Digital Advantage
+            What We Do
           </h1>
-          <p className="text-lg mt-2 max-xl:text-base max-md:text-sm">
-            BoltNex Technology offers a focused suite of high-value services,
-            underpinned by our proprietary toolkits and expertise:
+          <p className="text-lg mt-2 max-xl:text-base max-md:text-sm text-white/80">
+            Every product we build helps service businesses operate with
+            less friction:
           </p>
         </div>
 

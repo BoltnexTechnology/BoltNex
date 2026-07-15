@@ -1,142 +1,86 @@
-import { motion, useAnimation, useInView } from "framer-motion";
-import type { Variants } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { CalendarCheck, Workflow, Users, BarChart3 } from "lucide-react";
+
+const helps = [
+  {
+    icon: CalendarCheck,
+    title: "Simplify bookings",
+    desc: "Turn appointments and walk-ins into one predictable, manageable flow.",
+  },
+  {
+    icon: Workflow,
+    title: "Automate daily operations",
+    desc: "Remove the repetitive admin that eats into time better spent on customers.",
+  },
+  {
+    icon: Users,
+    title: "Improve customer engagement",
+    desc: "Give customers visibility and confidence before they even walk in.",
+  },
+  {
+    icon: BarChart3,
+    title: "Better business insights",
+    desc: "Understand demand and performance instead of guessing at it.",
+  },
+];
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
 const AboutBoltNet = () => {
-  const controls = useAnimation();
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  // Detect screen width (Tailwind's `max-xl` breakpoint = 1280px)
-  const isSmallScreen =
-    typeof window !== "undefined" && window.innerWidth <= 1280;
-
-  useEffect(() => {
-    if (isSmallScreen && isInView) {
-      controls.start("visible");
-    } else if (!isSmallScreen) {
-      // Instantly show everything on desktop
-      controls.set("visible");
-    }
-  }, [isInView, controls, isSmallScreen]);
-
-  // Container controls stagger timing for children
-  const containerVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.25, // delay between each card
-        delayChildren: 0.15, // delay before first card starts
-      },
-    },
-  };
-
-  // Individual card animations
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-  };
-
   return (
-    <section className="flex justify-between items-center gap-10 px-12 py-20 max-lg:px-8 max-md:px-6 max-xl:flex-col max-xl:gap-16">
-      {/* LEFT SECTION */}
-      <article className="basis-1/2 max-xl:basis-full text-left max-xl:text-center flex flex-col items-start max-xl:items-center">
-        <div className="max-w-xl w-full">
-          <p className="text-4xl max-md:text-3xl font-semibold leading-snug">
-            Localization Meets World-Class Engineering
-          </p>
+    <section className="py-24 max-lg:py-20 max-md:py-16">
+      <div className="max-w-2xl mx-auto text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="text-4xl max-md:text-3xl font-semibold text-black"
+        >
+          How Boltnex Technology helps
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          className="mt-4 text-black/60 text-lg max-md:text-base"
+        >
+          Every product we build is judged by one question: does it remove
+          friction for the businesses that use it?
+        </motion.p>
+      </div>
 
-          <p className="my-8 text-lg max-md:text-base font-medium text-[#00000099]">
-            We combine the technical excellence and legal stability of a
-            UK-registered firm with a deep, on-the-ground understanding of
-            international markets. We don't just build software; we build
-            market-ready solutions.
-          </p>
-
-          {/* STATIC IMAGE (no animation at all) */}
-          <img
-            src="/wordClass.jpg"
-            alt="wordClass"
-            className="w-9/12 max-xl:w-full h-100 max-md:h-auto rounded-3xl object-cover object-top shadow shadow-black/30 mx-auto"
-          />
-        </div>
-      </article>
-
-      {/* RIGHT SECTION (Animated only on smaller screens) */}
-      <motion.article
-        ref={ref}
-        variants={containerVariants}
+      <motion.div
+        className="grid grid-cols-4 max-xl:grid-cols-2 max-sm:grid-cols-1 gap-5 mt-14"
+        variants={container}
         initial="hidden"
-        animate={controls}
-        className="basis-[45%] max-xl:basis-full flex flex-col items-center gap-y-8 py-3"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
-        <motion.div
-          variants={containerVariants}
-          className="flex items-start justify-center gap-x-10 max-md:flex-col max-md:gap-y-10"
-        >
-          {/* CARD 1 */}
+        {helps.map(({ icon: Icon, title, desc }) => (
           <motion.div
-            variants={cardVariants}
-            className="max-w-80 text-center flex flex-col justify-start items-center"
+            key={title}
+            variants={item}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="rounded-2xl bg-white border border-black/5 shadow-sm p-6 text-left"
           >
-            <img
-              src="/ukcredibility.svg"
-              alt="ukcredibility"
-              className="w-14 mx-auto mb-4"
-            />
-            <p className="text-black text-2xl max-md:text-xl font-semibold">
-              UK Credibility
-            </p>
-            <p className="mt-4 text-[#00000099] max-md:text-base">
-              Deep commitment to adapting technology for the cultural,
-              logistical, and payment realities of local markets.
-            </p>
+            <div className="w-11 h-11 rounded-xl bg-bolts-blue/10 flex items-center justify-center mb-5">
+              <Icon className="w-5 h-5 text-bolts-blue" />
+            </div>
+            <p className="text-black font-semibold text-lg">{title}</p>
+            <p className="mt-2 text-black/60 text-sm leading-relaxed">{desc}</p>
           </motion.div>
-
-          {/* CARD 2 */}
-          <motion.div
-            variants={cardVariants}
-            className="max-w-80 text-center flex flex-col justify-start items-center"
-          >
-            <img
-              src="/location.svg"
-              alt="location"
-              className="w-14 mx-auto mb-4"
-            />
-            <p className="text-black text-2xl max-md:text-xl font-semibold">
-              Localization Expertise
-            </p>
-            <p className="mt-4 text-[#00000099] max-md:text-base">
-              Future-proof platforms built on microservices and cloud-native
-              principles, designed to handle massive transaction volumes and
-              exponential growth.
-            </p>
-          </motion.div>
-        </motion.div>
-
-        {/* CARD 3 */}
-        <motion.div
-          variants={cardVariants}
-          className="max-w-80 text-center flex flex-col justify-start items-center"
-        >
-          <img
-            src="/architecture.svg"
-            alt="architecture"
-            className="w-14 mx-auto mb-4"
-          />
-          <p className="text-black text-2xl max-md:text-xl font-semibold">
-            Scalable Architecture
-          </p>
-          <p className="mt-4 text-[#00000099] max-md:text-base">
-            Leverage our UK base for legal stability, strong IP protection, and
-            a reputation for high-quality, reliable technology services.
-          </p>
-        </motion.div>
-      </motion.article>
+        ))}
+      </motion.div>
     </section>
   );
 };

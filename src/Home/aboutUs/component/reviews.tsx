@@ -1,64 +1,73 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaArrowLeft } from "react-icons/fa";
+import {
+  CalendarCheck,
+  Workflow,
+  Users,
+  BarChart3,
+  Puzzle,
+  Gauge,
+  Bell,
+  type LucideIcon,
+} from "lucide-react";
 import ReadMore from "./readMore";
 
 interface Card {
   id: number;
-  startcount?: number;
+  icon: LucideIcon;
+  title: string;
   text: string;
-  title?: string;
-  dp?: string;
-  bg?: string;
-  role?: string;
 }
+
+const cards: Card[] = [
+  {
+    id: 1,
+    icon: Users,
+    title: "Manage customer flow",
+    text: "A live, transparent view of appointments, walk-ins and wait times, for the business and the customer.",
+  },
+  {
+    id: 2,
+    icon: CalendarCheck,
+    title: "Simplify bookings",
+    text: "Turn appointments and walk-ins into one predictable, manageable flow instead of calls and paper lists.",
+  },
+  {
+    id: 3,
+    icon: Bell,
+    title: "Improve customer engagement",
+    text: "Give customers visibility and confidence before they even walk in, with real-time status updates.",
+  },
+  {
+    id: 4,
+    icon: Workflow,
+    title: "Automate daily operations",
+    text: "Remove the repetitive admin that eats into time better spent serving customers.",
+  },
+  {
+    id: 5,
+    icon: Gauge,
+    title: "Improve operational efficiency",
+    text: "Understand demand and performance instead of guessing at it, and cut down on walkaways.",
+  },
+  {
+    id: 6,
+    icon: BarChart3,
+    title: "Gain better business insights",
+    text: "See patterns in customer flow and service time that are impossible to track by memory alone.",
+  },
+  {
+    id: 7,
+    icon: Puzzle,
+    title: "Integrate existing workflows",
+    text: "Bring bookings, walk-ins and operations into one streamlined experience instead of scattered tools.",
+  },
+];
 
 const Testimony: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-
-  const cards: Card[] = [
-    {
-      id: 1,
-      dp: "/cloud.svg",
-      title: "Custom Platform Engineering",
-      text: `End-to-end development of complex, scalable 
-       software platforms (web and mobile) built on modern 
-       microservices and cloud-native architectures.`,
-    },
-    {
-      id: 2,
-      dp: "/three-stars.svg",
-      title: "AI/ML and Data Solutions",
-      text: `Integration of advanced Artificial Intelligence  
-      and Machine Learning models for personalization, 
-      automation, predictive analytics, and specialized features.`,
-    },
-    {
-      id: 3,
-      dp: "/castle.svg",
-      title: "Market Localization & Integration",
-      text: `Expertise in adapting global platforms for local 
-       markets, including custom payment gateway integration, 
-       logistics system design, and localized feature development.`,
-    },
-    {
-      id: 4,
-      dp: "/technology.svg",
-      title: "Technology Consulting & Audits",
-      text: `Strategic advisory on technology roadmap,  
-      architecture design, digital transformation strategy, 
-      and security audits for existing systems.`,
-    },
-    {
-      id: 5,
-      dp: "/castle.svg",
-      title: "Market Localization & Integration",
-      text: `Expertise in adapting global platforms for local 
-       markets, including custom payment gateway integration, 
-       logistics system design, and localized feature development.`,
-    },
-  ];
 
   const totalCards = cards.length;
 
@@ -103,6 +112,7 @@ const Testimony: React.FC = () => {
             : 0.6;
 
           const zIndex = isActive ? 20 : 10 - position;
+          const Icon = card.icon;
 
           return (
             <motion.div
@@ -128,7 +138,9 @@ const Testimony: React.FC = () => {
             >
               <div className="flex flex-col justify-start items-start relative h-full gap-y-5">
                 <div>
-                  <img src={card.dp} alt="icon" className="w-14 h-14 mb-2" />
+                  <div className="w-14 h-14 rounded-xl bg-bolts-blue/10 flex items-center justify-center mb-3">
+                    <Icon className="w-6 h-6 text-bolts-blue" />
+                  </div>
                   <p className="font-semibold text-lg">{card.title}</p>
                 </div>
                 <div className="text-base max-sm:text-sm">
@@ -144,10 +156,10 @@ const Testimony: React.FC = () => {
         <button
           onClick={handleBack}
           disabled={isAnimating}
-          className={`border border-[#FCD34D] cursor-pointer text-[#FCD34D] flex justify-center items-center w-12 h-12 rounded-full transition-all duration-150 hover:scale-110 active:scale-95 ${
+          className={`border border-white/40 cursor-pointer text-white flex justify-center items-center w-12 h-12 rounded-full transition-all duration-150 hover:scale-110 active:scale-95 ${
             isAnimating ? "opacity-50 cursor-not-allowed" : ""
           }`}
-          aria-label="Previous testimonial"
+          aria-label="Previous"
         >
           <FaArrowLeft className="max-sm:text-xs" />
         </button>
@@ -155,10 +167,10 @@ const Testimony: React.FC = () => {
         <button
           onClick={handleNext}
           disabled={isAnimating}
-          className={`border border-[#FCD34D] cursor-pointer text-[#FCD34D] rotate-180 flex justify-center items-center w-12 h-12 rounded-full transition-all duration-150 hover:scale-110 active:scale-95 ${
+          className={`border border-white/40 cursor-pointer text-white rotate-180 flex justify-center items-center w-12 h-12 rounded-full transition-all duration-150 hover:scale-110 active:scale-95 ${
             isAnimating ? "opacity-50 cursor-not-allowed" : ""
           }`}
-          aria-label="Next testimonial"
+          aria-label="Next"
         >
           <FaArrowLeft className="max-sm:text-xs" />
         </button>

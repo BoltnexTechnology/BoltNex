@@ -16,59 +16,45 @@ const Footer = () => {
     },
     {
       img: <IoMdMail />,
-      link: "mailto:info@boltnex.com",
+      link: "mailto:support@boltnex.com",
     },
   ];
 
   const linkStyle =
-    "hover:text-bolts-blue transition-all duration-200 cursor-pointer hover:font-semibold hover:underline";
+    "hover:text-bolts-blue transition-colors duration-200 cursor-pointer";
 
   return (
-    <section className="pt-20 px-24 max-xl:px-16 max-lg:px-10 max-md:px-6">
-      <div
-        className="
-          grid 
-          grid-cols-3 
-          gap-10 
-          max-md:lg:gap-4
-          items-start 
-          place-items-start 
-          max-lg:grid-cols-2 
-          max-md:grid-cols-1 
-         
-          max-md:place-items-start
-        "
-      >
-        {/* LEFT SECTION */}
-        <div className="flex flex-col gap-y-3 items-start ">
-          <img src="/logo.svg" alt="logo" className="mb-1 w-36" />
-          <p className="text-black/70 text-sm md:text-base">
-            info@boltnex.com
+    <footer className="px-24 max-xl:px-16 max-lg:px-10 max-md:px-6 pt-20 max-md:pt-14">
+      {/* LINK GRID */}
+      <div className="grid grid-cols-4 gap-10 max-lg:grid-cols-2 max-sm:grid-cols-1 pb-10">
+        {/* BRAND */}
+        <div className="flex flex-col gap-y-3 items-start col-span-1">
+          <img src="/logo.svg" alt="Boltnex Technology" className="w-32" />
+          <p className="text-black/60 text-sm leading-relaxed max-w-xs">
+            Software that removes operational friction from service
+            businesses.
           </p>
-          <p className="text-black/70 text-sm md:text-base">
-            Leeds, United Kingdom.
-          </p>
-
-          <div className="flex gap-x-6 items-center mt-4">
+          <div className="flex gap-x-4 items-center mt-3">
             {socialArray.map((item, index) => (
               <a
                 key={index}
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full border border-black/10 flex items-center justify-center text-black/70 hover:text-bolts-blue hover:border-bolts-blue transition-colors duration-200"
               >
-                <p className="text-3xl text-black active:scale-95 hover:text-bolts-blue transition-all duration-200 hover:scale-110">
-                  {item.img}
-                </p>
+                <span className="text-base">{item.img}</span>
               </a>
             ))}
           </div>
         </div>
 
         {/* COMPANY LINKS */}
-        <div className="text-black/50 max-sm:hidden">
-          <p className="text-black font-semibold mb-2">Company</p>
-          <div className="space-y-1">
+        <div className="text-black/60">
+          <p className="text-black font-semibold mb-3 text-sm uppercase tracking-wide">
+            Company
+          </p>
+          <div className="space-y-2.5 text-sm">
             <p className={linkStyle}>
               <Link to={AppRoutes.home}>Home</Link>
             </p>
@@ -81,28 +67,58 @@ const Footer = () => {
             <p className={linkStyle}>
               <Link to={AppRoutes.contactUs}>Contact Us</Link>
             </p>
+            <p className={linkStyle}>
+              <Link to={AppRoutes.privacyPolicy}>Privacy Policy</Link>
+            </p>
+            <p className={linkStyle}>
+              <Link to={AppRoutes.termsOfUse}>Terms of Use</Link>
+            </p>
           </div>
         </div>
 
-        {/* SERVICES LINKS */}
-        <div className="text-black/50 max-sm:hidden">
-          <p className="text-black font-semibold mb-2">Services</p>
-          <div className="space-y-1">
-            <p>Custom Platform Engineering</p>
-            <p>AI/ML and Data Solutions</p>
-            <p>Market Localization & Integration</p>
-            <p>Technology Consulting & Audits</p>
-            <p>Market Localization & Integration</p>
+        {/* PRODUCT LINKS */}
+        <div className="text-black/60">
+          <p className="text-black font-semibold mb-3 text-sm uppercase tracking-wide">
+            Product
+          </p>
+          <div className="space-y-2.5 text-sm">
+            <a href={`${AppRoutes.home}#bqueue`} className={`block ${linkStyle}`}>
+              BQueue
+            </a>
+            <p className={linkStyle}>
+              <Link to={AppRoutes.contactUs}>Request a Demo</Link>
+            </p>
+          </div>
+        </div>
+
+        {/* CONTACT */}
+        <div className="text-black/60">
+          <p className="text-black font-semibold mb-3 text-sm uppercase tracking-wide">
+            Contact
+          </p>
+          <div className="space-y-2.5 text-sm">
+            <a href="mailto:support@boltnex.com" className={`block ${linkStyle}`}>
+              support@boltnex.com
+            </a>
+            <a href="tel:+447881162899" className={`block ${linkStyle}`}>
+              +44 7881 162899
+            </a>
+            <p>London, United Kingdom</p>
           </div>
         </div>
       </div>
 
-      {/* COPYRIGHT LINE */}
-      <p className="text-center py-7 border-t border-gray-300 mt-7 text-sm text-black/70 max-sm:text-xs">
-        <span className="mr-2">© 2025</span> BOLTNEX TECHNOLOGY — All rights
-        reserved.
-      </p>
-    </section>
+      {/* LEGAL / COPYRIGHT LINE */}
+      <div className="py-7 border-t border-black/10 text-center text-sm text-black/50 space-y-1.5">
+        <p>
+          © {new Date().getFullYear()} Boltnex Technology — All rights reserved.
+        </p>
+        <p className="text-xs text-black/40">
+          Boltnex Technology Ltd is a company registered in England and Wales.
+          Company No. 16945866. Registered office: London, United Kingdom.
+        </p>
+      </div>
+    </footer>
   );
 };
 

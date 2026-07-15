@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AppRoutes } from "../utils/route";
 import { useState, useEffect } from "react";
+import { buttonVariants } from "../components/ui/button";
+import { cn } from "../lib/utils";
 
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -81,17 +83,18 @@ const Navbar = () => {
 
       {/* Mobile menu button */}
       <div
-        className="max-lg:block hidden bg-bolts-blue z-20 rounded-full px-4 py-1.5 text-sm cursor-pointer font-bold text-white"
+        className={cn(buttonVariants({ size: "sm" }), "max-lg:block hidden z-20")}
         onClick={() => setSidebarOpen(true)}
       >
         Menu
       </div>
 
       {/* Desktop Contact Button */}
-      <Link to={AppRoutes.contactUs} className="max-lg:hidden">
-        <div className="px-6 py-4 rounded-full text-white bg-bolts-blue">
-          Contact Us
-        </div>
+      <Link
+        to={AppRoutes.contactUs}
+        className={cn(buttonVariants({ size: "sm" }), "max-lg:hidden")}
+      >
+        Contact Us
       </Link>
 
       {/* Sidebar */}
@@ -122,7 +125,7 @@ const Navbar = () => {
                   </div>
                 </section>
                 <div
-        className="max-lg:block hidden bg-bolts-blue z-20 rounded-full px-4 py-1.5 text-sm cursor-pointer font-bold text-white"
+                  className={cn(buttonVariants({ size: "sm" }), "z-20")}
                   onClick={() => setSidebarOpen(false)}
                 >
                   Close
@@ -151,23 +154,22 @@ const Navbar = () => {
                 );
               })}
 
-              {/* Contact Us Button in Sidebar */}
-              {/* Contact Us Button in Sidebar */}
-{(() => {
-  const active = isActive([AppRoutes.contactUs]);
-  return (
-    <div
-      onClick={() => handleTabClick(AppRoutes.contactUs)}
-      className={`py-3 my-2 cursor-pointer rounded-full mx-auto w-60 text-center border transition-all duration-300 ${
-        active
-          ? "bg-bolts-blue text-white border-transparent"
-          : "border-bolts-blue text-bolts-blue"
-      }`}
-    >
-      Contact Us
-    </div>
-  );
-})()}
+              {/* Contact Us button in sidebar */}
+              {(() => {
+                const active = isActive([AppRoutes.contactUs]);
+                return (
+                  <div
+                    onClick={() => handleTabClick(AppRoutes.contactUs)}
+                    className={`py-3 my-2 cursor-pointer rounded-full mx-auto w-60 text-center border transition-all duration-300 ${
+                      active
+                        ? "bg-bolts-blue text-white border-transparent"
+                        : "border-bolts-blue text-bolts-blue"
+                    }`}
+                  >
+                    Contact Us
+                  </div>
+                );
+              })()}
 
             </motion.div>
           </>

@@ -21,7 +21,7 @@ const ReadMore: React.FC<ReadMoreProps> = ({ text, maxChars = 150 }) => {
         {isTruncated && (
           <span
             onClick={toggle}
-            className="text-secondaryCol cursor-pointer ml-1 underline mt-1 text-sm font-semibold"
+            className="text-bolts-blue cursor-pointer ml-1 underline mt-1 text-sm font-semibold"
           >
             {expanded ? "Read less" : "Read more"}
           </span>
